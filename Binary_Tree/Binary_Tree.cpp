@@ -18,6 +18,14 @@ Binary_Tree::Binary_Tree(int value)
 	current_root = node_queue.front();
 }
 
+struct Node* Binary_Tree::new_node(unsigned long long int item)
+{
+	struct Node *ptr = new struct Node;
+	ptr->key = item;
+	ptr->lchild = ptr->rchild = NULL;
+	return ptr;
+}
+
 Binary_Tree::~Binary_Tree()
 {
 
