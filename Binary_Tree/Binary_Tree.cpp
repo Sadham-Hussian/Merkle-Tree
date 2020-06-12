@@ -1,6 +1,7 @@
 #include "Binary_Tree.h"
 #include <iostream>
 #include <queue>
+#include <stdio.h>
 
 using namespace std;
 
@@ -24,6 +25,55 @@ struct Node* Binary_Tree::new_node(unsigned long long int item)
 	ptr->key = item;
 	ptr->lchild = ptr->rchild = NULL;
 	return ptr;
+}
+
+struct Node* Binary_Tree::get_root() const
+{
+	return this->root;
+}
+
+void Binary_Tree::insert(unsigned long long int key)
+{
+	insert_key(key);
+}
+
+void Binary_Tree::insert_key(unsigned long long int key)
+{
+	if(count%2)
+	{
+		current_root->lchild = new_node(key);
+		node_queue.push(current_root->lchild);
+	}
+	else
+	{
+		current_root->rchild = new_node(key);
+		node_queue.push(current_root->rchild);
+		node_queue.pop();
+		current_root = node_queue.front();
+	}
+	count++;
+}
+
+void Binary_Tree::level_order_traversal(struct Node* root) const
+{
+	queue <struct Node*> node_queue;
+	struct Node *ptr = root;
+	int node_count = 1;
+	while(ptr)
+	{
+		count << endl;
+		cout << node_count++ << " " << ptr->key << " ";
+		if (ptr->lchild != NULL)
+		{
+			node_queue.push(ptr->lchild);
+		}
+		if (ptr->rchild != NULL)
+		{
+			node_queue.push(ptr->rchild);
+		}
+		ptr = node_queue.front();
+		node_queue.pop();
+	}
 }
 
 Binary_Tree::~Binary_Tree()
