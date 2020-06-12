@@ -10,3 +10,15 @@ Binary_Tree::Binary_Tree()
 	this.count = 1;
 }
 
+Binary_Tree::Binary_Tree(int value)
+{
+	this->root = new_node(value);
+	this->count = 1;
+	node_queue.push(root);
+	current_root = node_queue.front();
+}
+
+Binary_Tree::~Binary_Tree()
+{
+
+}
