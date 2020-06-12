@@ -32,6 +32,6 @@ class Binary_Tree
 		void insert(unsigned long long int key);
 		void level_order_traversal(struct Node* root) const;
 		virtual ~Binary_Tree();
-}
+};
 
 #endif
