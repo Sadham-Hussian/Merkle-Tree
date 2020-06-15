@@ -62,3 +62,20 @@ unsigned long long int* Merkle_Tree::create_merkle_tree(char** msg_packets, int 
 
 	return hash_array;
 }
+
+unsigned long long int Merkle_Tree::get_master_root() const
+{
+	return get_root()->key;
+}
+
+unsigned long long int Merkle_Tree::hash_generator(char *str)
+{
+	unsigned long hash = 5381;
+	unsigned long int c;
+
+	while( (c = *str++))
+	{
+		hash = ( (hash << 5) + hash ) + c;
+	}
+	return hash;
+}
