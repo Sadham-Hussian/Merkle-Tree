@@ -79,3 +79,22 @@ unsigned long long int Merkle_Tree::hash_generator(char *str)
 	}
 	return hash;
 }
+
+void Merkle_Tree::generate_master_hash(struct Node* ptr)
+{
+	if(ptr->key > 100)
+		return;
+	if(ptr->lchild != NULL)
+		generate_master_hash(ptr->lchild);
+	if(ptr->rchild != NULL)
+		generate_master_hash(ptr->rchild);
+	ptr->key = hash_generator(string_to_uschp( to_string( (ptr->lchild->key) + (ptr->rchild->key))));
+
+	if(ptr == get_root())
+		return;
+}
+
+Merkle_Tree::~Merkle_Tree()
+{
+	
+}
