@@ -96,5 +96,13 @@ void Merkle_Tree::generate_master_hash(struct Node* ptr)
 
 Merkle_Tree::~Merkle_Tree()
 {
-	
+
+}
+
+char *string_to_uschp(string s)
+{
+	int n = s.length();
+	char *char_array = new char[n + 1];
+	strcpy(char_array, s.c_str());
+	return char_array;
 }
