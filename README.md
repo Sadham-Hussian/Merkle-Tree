@@ -1,2 +1,2 @@
 # Merkle-Tree
-Data Validation using Merkle Trees
+A basic implementation of Merkle Trees to validate data in C++.
