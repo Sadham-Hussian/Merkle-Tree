@@ -14,6 +14,6 @@ class Merkle_Tree : public Binary_Tree
 		unsigned long long int* create_merkle_tree(char**, int);
 		void generate_master_hash(struct Node*);
 		virtual ~Merkle_Tree();
-}
+};
 
 #endif

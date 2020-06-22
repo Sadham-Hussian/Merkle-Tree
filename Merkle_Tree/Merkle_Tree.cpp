@@ -37,7 +37,7 @@ unsigned long long int* Merkle_Tree::create_merkle_tree(char** msg_packets, int 
 
 	for(int i=1; i < no_of_nodes - 1; i++)
 	{
-		insert(node_array[i])
+		insert(node_array[i]);
 	}
 	generate_master_hash( get_root() );
 	unsigned long long int *hash_array = new unsigned long long int[no_of_nodes + 1];
@@ -48,13 +48,13 @@ unsigned long long int* Merkle_Tree::create_merkle_tree(char** msg_packets, int 
 	while(ptr)
 	{
 		hash_array[index_counter++] = ptr->key;
-		if(ptr->lchild != NULL)
+		if(ptr->left_child != NULL)
 		{
-			node_queue.push(ptr->lchild);
+			node_queue.push(ptr->left_child);
 		}
-		if(ptr->rchild != NULL)
+		if(ptr->right_child != NULL)
 		{
-			node_queue.push(ptr->rchild);
+			node_queue.push(ptr->right_child);
 		}
 		ptr = node_queue.front();
 		node_queue.pop();
@@ -84,11 +84,11 @@ void Merkle_Tree::generate_master_hash(struct Node* ptr)
 {
 	if(ptr->key > 100)
 		return;
-	if(ptr->lchild != NULL)
-		generate_master_hash(ptr->lchild);
-	if(ptr->rchild != NULL)
-		generate_master_hash(ptr->rchild);
-	ptr->key = hash_generator(string_to_uschp( to_string( (ptr->lchild->key) + (ptr->rchild->key))));
+	if(ptr->left_child != NULL)
+		generate_master_hash(ptr->left_child);
+	if(ptr->right_child != NULL)
+		generate_master_hash(ptr->right_child);
+	ptr->key = hash_generator(string_to_uschp( to_string( (ptr->left_child->key) + (ptr->right_child->key))));
 
 	if(ptr == get_root())
 		return;

@@ -8,7 +8,7 @@ using namespace std;
 Binary_Tree::Binary_Tree()
 {
 	this->root = new_node(1);
-	this.count = 1;
+	this->count = 1;
 }
 
 Binary_Tree::Binary_Tree(int value)
@@ -23,7 +23,7 @@ struct Node* Binary_Tree::new_node(unsigned long long int item)
 {
 	struct Node *ptr = new struct Node;
 	ptr->key = item;
-	ptr->lchild = ptr->rchild = NULL;
+	ptr->left_child = ptr->right_child = NULL;
 	return ptr;
 }
 
@@ -41,13 +41,13 @@ void Binary_Tree::insert_key(unsigned long long int key)
 {
 	if(count%2)
 	{
-		current_root->lchild = new_node(key);
-		node_queue.push(current_root->lchild);
+		current_root->left_child = new_node(key);
+		node_queue.push(current_root->left_child);
 	}
 	else
 	{
-		current_root->rchild = new_node(key);
-		node_queue.push(current_root->rchild);
+		current_root->right_child = new_node(key);
+		node_queue.push(current_root->right_child);
 		node_queue.pop();
 		current_root = node_queue.front();
 	}
@@ -61,15 +61,15 @@ void Binary_Tree::level_order_traversal(struct Node* root) const
 	int node_count = 1;
 	while(ptr)
 	{
-		count << endl;
+		cout << endl;
 		cout << node_count++ << " " << ptr->key << " ";
-		if (ptr->lchild != NULL)
+		if (ptr->left_child != NULL)
 		{
-			node_queue.push(ptr->lchild);
+			node_queue.push(ptr->left_child);
 		}
-		if (ptr->rchild != NULL)
+		if (ptr->right_child != NULL)
 		{
-			node_queue.push(ptr->rchild);
+			node_queue.push(ptr->right_child);
 		}
 		ptr = node_queue.front();
 		node_queue.pop();
